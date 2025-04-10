@@ -68,16 +68,19 @@ docker-compose up -d
 If you can't connect to the device, check:
 
 1. Is the container running?
+
    ```bash
-   docker ps | grep snmp-test-device
+   docker ps | grep snmp-device-01
    ```
 
 2. What is the container's IP address?
+
    ```bash
-   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snmp-test-device
+   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' snmp-device-01
    ```
 
 3. Are the ports mapped correctly?
+
    ```bash
    docker-compose ps
    ```
