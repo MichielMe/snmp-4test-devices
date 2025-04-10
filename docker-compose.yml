@@ -1,0 +1,76 @@
+services:
+  snmp-device-01:
+    image: polinux/snmpd:latest
+    container_name: snmp-device-01
+    ports:
+      - "10161:161/udp"
+    environment:
+      - SNMPD_LISTEN_ADDRESS=udp:161
+      - SNMPD_ROCOMMUNITY=public
+      - SNMPD_SYSLOCATION=Router Room A
+      - SNMPD_SYSCONTACT=admin@example.com
+      - SNMPD_SYSNAME=router-01
+      - SNMPD_SYSDESCR=Router SNMP Device 01
+      - SNMPD_SYSSERVICES=72
+    volumes:
+      - ./snmpd.conf:/etc/snmp/snmpd.conf
+    networks:
+      - snmp-test-net
+
+  snmp-device-02:
+    image: polinux/snmpd:latest
+    container_name: snmp-device-02
+    ports:
+      - "10162:161/udp"
+    environment:
+      - SNMPD_LISTEN_ADDRESS=udp:161
+      - SNMPD_ROCOMMUNITY=public
+      - SNMPD_SYSLOCATION=Router Room B
+      - SNMPD_SYSCONTACT=admin@example.com
+      - SNMPD_SYSNAME=router-02
+      - SNMPD_SYSDESCR=Router SNMP Device 02
+      - SNMPD_SYSSERVICES=72
+    volumes:
+      - ./snmpd.conf:/etc/snmp/snmpd.conf
+    networks:
+      - snmp-test-net
+
+  snmp-device-03:
+    image: polinux/snmpd:latest
+    container_name: snmp-device-03
+    ports:
+      - "10163:161/udp"
+    environment:
+      - SNMPD_LISTEN_ADDRESS=udp:161
+      - SNMPD_ROCOMMUNITY=public
+      - SNMPD_SYSLOCATION=Switch Room A
+      - SNMPD_SYSCONTACT=admin@example.com
+      - SNMPD_SYSNAME=switch-01
+      - SNMPD_SYSDESCR=Switch SNMP Device 01
+      - SNMPD_SYSSERVICES=72
+    volumes:
+      - ./snmpd.conf:/etc/snmp/snmpd.conf
+    networks:
+      - snmp-test-net
+
+  snmp-device-04:
+    image: polinux/snmpd:latest
+    container_name: snmp-device-04
+    ports:
+      - "10164:161/udp"
+    environment:
+      - SNMPD_LISTEN_ADDRESS=udp:161
+      - SNMPD_ROCOMMUNITY=public
+      - SNMPD_SYSLOCATION=Switch Room B
+      - SNMPD_SYSCONTACT=admin@example.com
+      - SNMPD_SYSNAME=switch-02
+      - SNMPD_SYSDESCR=Switch SNMP Device 02
+      - SNMPD_SYSSERVICES=72
+    volumes:
+      - ./snmpd.conf:/etc/snmp/snmpd.conf
+    networks:
+      - snmp-test-net
+
+networks:
+  snmp-test-net:
+    driver: bridge
